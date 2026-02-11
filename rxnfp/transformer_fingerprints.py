@@ -5,7 +5,7 @@ __all__ = ['RXNBERTFingerprintGenerator', 'RXNBERTMinhashFingerprintGenerator', 
 
 # Cell
 import torch
-import pkg_resources
+from importlib.resources import files
 import numpy as np
 from typing import List
 from tqdm import tqdm
@@ -109,16 +109,10 @@ class RXNBERTMinhashFingerprintGenerator(FingerprintGenerator):
 
 def get_default_model_and_tokenizer(model='bert_ft', force_no_cuda=False):
 
-    model_path =  pkg_resources.resource_filename(
-                "rxnfp",
-                f"models/transformers/{model}"
-            )
+    model_path = str(files("rxnfp") / f"models/transformers/{model}")
 
-    tokenizer_vocab_path = (
-        pkg_resources.resource_filename(
-                    "rxnfp",
-                    f"models/transformers/{model}/vocab.txt"
-                )
+    tokenizer_vocab_path = str(
+        files("rxnfp") / f"models/transformers/{model}/vocab.txt"
     )
     device = torch.device("cuda" if (torch.cuda.is_available() and not force_no_cuda) else "cpu")
 

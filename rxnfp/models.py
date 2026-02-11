@@ -12,7 +12,7 @@ import torch
 import logging
 import random
 import warnings
-import pkg_resources
+from importlib.resources import files
 import sklearn
 
 from transformers import (
