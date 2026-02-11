@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rxnfp"
+version = "0.1.0"
+description = "Chemical reaction fingerprints"
+readme = "README.md"
+license = {text = "MIT License"}
+requires-python = ">=3.8"
+authors = [
+    {name = "Philippe Schwaller", email = "phs@zurich.ibm.com"},
+]
+keywords = ["chemical", "reactions", "fingerprints", "classification"]
+dependencies = [
+    "transformers>=4.5.0",
+    "torch>=1.6",
+    "scipy",
+    "scikit-learn",
+    "matplotlib",
+]
+
+[tool.setuptools.packages.find]
+include = ["rxnfp*"]
+
+[tool.setuptools.package-data]
+rxnfp = [
+    "models/transformers/bert_ft/*",
+    "models/transformers/bert_ft_10k_25s/*",
+    "models/transformers/bert_pretrained/*",
+]
